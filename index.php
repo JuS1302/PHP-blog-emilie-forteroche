@@ -75,7 +75,7 @@ try {
             break;
 
         case "monitoring":
-          $adminController = new AdminController();
+          $adminController = new MonitoringController();
           $adminController->showMonitoring();
           break;
 

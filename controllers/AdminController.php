@@ -12,7 +12,7 @@ class AdminController {
     public function showAdmin() : void
     {
         // On vérifie que l'utilisateur est connecté.
-        $this->checkIfUserIsConnected();
+        Utils::checkIfUserIsConnected();
 
         // On récupère les articles.
         $articleManager = new ArticleManager();
@@ -23,18 +23,6 @@ class AdminController {
         $view->render("admin", [
             'articles' => $articles
         ]);
-    }
-
-    /**
-     * Vérifie que l'utilisateur est connecté.
-     * @return void
-     */
-    private function checkIfUserIsConnected() : void
-    {
-        // On vérifie que l'utilisateur est connecté.
-        if (!isset($_SESSION['user'])) {
-            Utils::redirect("connectionForm");
-        }
     }
 
     /**
@@ -102,7 +90,7 @@ class AdminController {
      */
     public function showUpdateArticleForm() : void
     {
-        $this->checkIfUserIsConnected();
+        Utils::checkIfUserIsConnected();
 
         // On récupère l'id de l'article s'il existe.
         $id = Utils::request("id", -1);
@@ -130,7 +118,7 @@ class AdminController {
      */
     public function updateArticle() : void
     {
-        $this->checkIfUserIsConnected();
+        Utils::checkIfUserIsConnected();
 
         // On récupère les données du formulaire.
         $id = Utils::request("id", -1);
@@ -165,7 +153,7 @@ class AdminController {
      */
     public function deleteArticle() : void
     {
-        $this->checkIfUserIsConnected();
+        Utils::checkIfUserIsConnected();
 
         $id = Utils::request("id", -1);
 
@@ -179,7 +167,7 @@ class AdminController {
 
     public function showMonitoring()
     {
-        $this->checkIfUserIsConnected();
+        Utils::checkIfUserIsConnected();
 
         $articleManager = new ArticleManager();
         $articles = $articleManager->getAllArticlesWithStats();
