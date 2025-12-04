@@ -118,7 +118,7 @@ form .formGrid .submit {
 .foldedCorner {
     position: relative;
     overflow: hidden;
-} 
+}
 
 .foldedCorner::before {
     content: "";
@@ -140,7 +140,7 @@ header {
     flex-direction: column;
     width: 100%;
     margin-bottom: 30px;
-    background-color: var(--headerPaleColor); 
+    background-color: var(--headerPaleColor);
 }
 
 header > nav {
@@ -305,7 +305,65 @@ a.info {
 
 /**
  * Partie admin
- */ 
+ */
+
+ /* monitoring */
+
+.adminHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.monitoringButton {
+    padding: 8px 10px;
+    font-weight: bold;
+    text-align: center;
+    width: 30%;
+    color: white;
+    background-color: var(--headerColor);
+    border: none;
+    margin: 20px 0;
+    font-size: 25px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.monitoringButton:hover {
+    background-color: var(--titleColor);
+}
+
+.headerLine {
+    background-color: var(--commentColor); /* vert foncé */
+    font-weight: bold;
+}
+
+.adminMonitoring {
+    width: 100%;
+
+    & .articleLine {
+        display: flex;
+
+        & div {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border: 1px solid var(--backgroundColor);
+        }
+
+        & .title {
+            font-weight: bold;
+            flex: 2;
+        }
+
+        & .content {
+            flex: 1;
+        }
+    }
+}
+
+/* admin */
 
 .adminArticle {
     margin-bottom: 20px;
@@ -314,7 +372,7 @@ a.info {
 }
 
 .articleLine {
-    display: flex; 
+    display: flex;
 }
 
 .articleLine div {
@@ -337,7 +395,7 @@ a.info {
     border: 1px solid var(--backgroundColor);
 }
 
-/** 
+/**
  * Footer global de la page.
  */
 footer {

@@ -3,7 +3,7 @@
 /**
  * Classe qui gère les articles.
  */
-class ArticleManager extends AbstractEntityManager 
+class ArticleManager extends AbstractEntityManager
 {
     /**
      * Récupère tous les articles.
@@ -20,7 +20,7 @@ class ArticleManager extends AbstractEntityManager
         }
         return $articles;
     }
-    
+
     /**
      * Récupère un article par son id.
      * @param int $id : l'id de l'article.
@@ -43,7 +43,7 @@ class ArticleManager extends AbstractEntityManager
      * @param Article $article : l'article à ajouter ou modifier.
      * @return void
      */
-    public function addOrUpdateArticle(Article $article) : void 
+    public function addOrUpdateArticle(Article $article) : void
     {
         if ($article->getId() == -1) {
             $this->addArticle($article);
@@ -92,4 +92,44 @@ class ArticleManager extends AbstractEntityManager
         $sql = "DELETE FROM article WHERE id = :id";
         $this->db->query($sql, ['id' => $id]);
     }
+
+    /**
+     * Récupère tous les articles avec :
+     * - nombre de commentaires
+     * - nombre de vues
+     * - date de création
+     *
+     * @return array
+     */
+    public function getAllArticlesWithStats() : array
+    {
+        $sql = "
+            SELECT
+                a.*,
+                (SELECT COUNT(*) FROM comment c WHERE c.id_article = a.id) AS comment_count
+            FROM article a
+            ORDER BY a.date_creation DESC
+        ";
+
+        $result = $this->db->query($sql);
+        $articles = [];
+
+        while ($row = $result->fetch()) {
+            $article = new Article($row);
+            $article->setCommentCount($row['comment_count']);
+            $articles[] = $article;
+        }
+
+        return $articles;
+    }
+
+    /**
+     * Incrémente le compteur de vues d'un article.
+     */
+    public function incrementViews(int $id) : void
+    {
+        $sql = "UPDATE article SET views = views + 1 WHERE id = :id";
+        $this->db->query($sql, ['id' => $id]);
+    }
+
 }

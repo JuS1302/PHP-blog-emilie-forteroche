@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-class ArticleController 
+class ArticleController
 {
     /**
      * Affiche la page d'accueil.
@@ -26,14 +26,19 @@ class ArticleController
 
         $articleManager = new ArticleManager();
         $article = $articleManager->getArticleById($id);
-        
+
         if (!$article) {
             throw new Exception("L'article demandé n'existe pas.");
         }
 
+        // incrémentation des vues
+        $articleManager->incrementViews($id);
+
+        // récupération des commentaires
         $commentManager = new CommentManager();
         $comments = $commentManager->getAllCommentsByArticleId($id);
 
+        // adfichage de la vue
         $view = new View($article->getTitle());
         $view->render("detailArticle", ['article' => $article, 'comments' => $comments]);
     }
