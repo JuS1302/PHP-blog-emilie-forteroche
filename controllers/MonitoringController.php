@@ -71,8 +71,8 @@ class MonitoringController {
         }
     });
 
-    $view = new View("admin_monitoring");
-    $view->render("admin_monitoring", [
+    $view = new View("adminMonitoring");
+    $view->render("adminMonitoring", [
         "articles" => $articles,
         "sort" => $sort,
         "order" => $order

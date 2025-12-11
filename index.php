@@ -79,6 +79,16 @@ try {
           $monitoringController->showMonitoring();
           break;
 
+        case 'deleteComment':
+            $adminCommentsController = new AdminCommentsController();
+            $adminCommentsController->deleteComment();
+            break;
+            
+        case 'adminComments':
+            $adminCommentsController = new AdminCommentsController();
+            $adminCommentsController->showComments();
+            break;
+
         default:
             throw new Exception("La page demandée n'existe pas.");
     }

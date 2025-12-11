@@ -21,7 +21,9 @@ class AdminController {
         // On affiche la page d'administration.
         $view = new View("Administration");
         $view->render("admin", [
-            'articles' => $articles
+            'articles' => $articles,
+
+
         ]);
     }
 

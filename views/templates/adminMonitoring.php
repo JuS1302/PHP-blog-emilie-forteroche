@@ -12,15 +12,14 @@
     <div class="articleLine headerLine">
         <div class="title">
           <!-- partie dynamique du lien : si sort = title et order = asc alors on inverse l'ordre  -->
-            <a href="index.php?action=monitoring&sort=title&order=<?
-
-              if($sort == 'title' && $order == 'asc'){
-                echo 'desc';
-              } else {
-                echo 'asc';
-              }
-
-             ?>">
+            <a href="index.php?action=monitoring&sort=title&order=<?=
+              // if($sort == 'title' && $order == 'asc'){
+              //   echo 'desc';
+              // } else {
+              //   echo 'asc';
+              // }
+              ($sort == 'title' && $order == 'asc' ? 'desc' : 'asc')
+              ?>">
                 Titre
                 <?php if ($sort == 'title') { ?>
                     <?= $order == 'asc' ? '▲' : '▼' ?>
@@ -30,10 +29,8 @@
             </a>
         </div>
         <div class="content">
-            <a href="index.php?action=monitoring&sort=views&order=<?
-
+            <a href="index.php?action=monitoring&sort=views&order=<?=
             ($sort == 'views' && $order == 'asc') ? 'desc' : 'asc'
-
             ?>">
                 Vues
                 <?php if ($sort == 'views') { ?>
