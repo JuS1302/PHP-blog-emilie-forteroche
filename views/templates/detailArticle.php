@@ -9,7 +9,6 @@
     <h2> <?= Utils::format($article->getTitle()) ?> </h2>
     <span class="quotation">«</span>
     <p><?= Utils::format($article->getContent()) ?></p>
-    <p> TEST Nombre de vue : <?= Utils::format($article->getViews()) ?></p>
 
     <div class="footer">
         <span class="info"> Publié le <?= Utils::convertDateToFrenchFormat($article->getDateCreation()) ?></span>
