@@ -8,12 +8,61 @@
 
 <div class="adminArticle adminMonitoring">
 
-    <!-- Ligne d'en-tête -->
+    <!-- Ligne d'en-tête avec liens de tri -->
     <div class="articleLine headerLine">
-        <div class="title">Titre</div>
-        <div class="content">Vues</div>
-        <div class="content">Commentaires</div>
-        <div class="content">Date</div>
+        <div class="title">
+          <!-- partie dynamique du lien : si sort = title et order = asc alors on inverse l'ordre  -->
+            <a href="index.php?action=monitoring&sort=title&order=<?
+
+              if($sort == 'title' && $order == 'asc'){
+                echo 'desc';
+              } else {
+                echo 'asc';
+              }
+
+             ?>">
+                Titre
+                <?php if ($sort == 'title') { ?>
+                    <?= $order == 'asc' ? '▲' : '▼' ?>
+                <?php } else { ?>
+                    ▲▼
+                <?php } ?>
+            </a>
+        </div>
+        <div class="content">
+            <a href="index.php?action=monitoring&sort=views&order=<?
+
+            ($sort == 'views' && $order == 'asc') ? 'desc' : 'asc'
+
+            ?>">
+                Vues
+                <?php if ($sort == 'views') { ?>
+                    <?= $order == 'asc' ? '▲' : '▼' ?>
+                <?php } else { ?>
+                    ▲▼
+                <?php } ?>
+            </a>
+        </div>
+        <div class="content">
+            <a href="index.php?action=monitoring&sort=comments&order=<?= ($sort == 'comments' && $order == 'asc') ? 'desc' : 'asc' ?>">
+                Commentaires
+                <?php if ($sort == 'comments') { ?>
+                    <?= $order == 'asc' ? '▲' : '▼' ?>
+                <?php } else { ?>
+                    ▲▼
+                <?php } ?>
+            </a>
+        </div>
+        <div class="content">
+            <a href="index.php?action=monitoring&sort=date&order=<?= ($sort == 'date' && $order == 'asc') ? 'desc' : 'asc' ?>">
+                Date
+                <?php if ($sort == 'date') { ?>
+                    <?= $order == 'asc' ? '▲' : '▼' ?>
+                <?php } else { ?>
+                    ▲▼
+                <?php } ?>
+            </a>
+        </div>
     </div>
 
     <!-- Lignes du tableau -->
